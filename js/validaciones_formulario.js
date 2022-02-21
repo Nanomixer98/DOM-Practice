@@ -15,20 +15,10 @@ export default function contactFormValidations() {
     d.addEventListener("keyup", (e) => {
         if (e.target.matches(".contact-form [required]")) {
             let $input = e.target;
-            let pattern = $input.pattern || $input.dataset.pattern;
-
-            if (pattern && $input.value !== "") {
-                let regex = new RegExp(pattern);
-                return (!regex.exec($input.value)) ?
+            
+			return ( !$input.checkValidity() ) ?
                     d.getElementById($input.name).classList.add("is-active") :
                     d.getElementById($input.name).classList.remove("is-active");
-            }
-            if (!pattern) {
-                return ($input.value === "") ?
-                    d.getElementById($input.name).classList.add("is-active") :
-                    d.getElementById($input.name).classList.remove("is-active");
-
-            }
         }
     });
 
